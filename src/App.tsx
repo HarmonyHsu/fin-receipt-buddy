@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/hooks/useAuth";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import Navigation from "@/components/Navigation";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/auth/Login";
@@ -57,13 +56,13 @@ const AppRoutes = () => {
       />
       
       {/* Protected App Routes */}
-      <Route path="/dashboard" element={<ProtectedRoute><Navigation /><Dashboard /></ProtectedRoute>} />
-      <Route path="/expenses" element={<ProtectedRoute><Navigation /><ExpensesPage /></ProtectedRoute>} />
-      <Route path="/receipt" element={<ProtectedRoute><Navigation /><ReceiptPage /></ProtectedRoute>} />
-      <Route path="/insights" element={<ProtectedRoute><Navigation /><InsightsPage /></ProtectedRoute>} />
-      <Route path="/goals" element={<ProtectedRoute><Navigation /><GoalsPage /></ProtectedRoute>} />
-      <Route path="/gamification" element={<ProtectedRoute><Navigation /><GamificationPage /></ProtectedRoute>} />
-      <Route path="/settings" element={<ProtectedRoute><Navigation /><SettingsPage /></ProtectedRoute>} />
+      <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/expenses" element={<ProtectedRoute><ExpensesPage /></ProtectedRoute>} />
+      <Route path="/receipt" element={<ProtectedRoute><ReceiptPage /></ProtectedRoute>} />
+      <Route path="/insights" element={<ProtectedRoute><InsightsPage /></ProtectedRoute>} />
+      <Route path="/goals" element={<ProtectedRoute><GoalsPage /></ProtectedRoute>} />
+      <Route path="/gamification" element={<ProtectedRoute><GamificationPage /></ProtectedRoute>} />
+      <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
       
       {/* Public Support Pages */}
       <Route path="/about" element={<AboutPage />} />
