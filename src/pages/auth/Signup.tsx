@@ -143,6 +143,7 @@ const Signup = () => {
                   <SelectItem value="EUR">EUR (€)</SelectItem>
                   <SelectItem value="GBP">GBP (£)</SelectItem>
                   <SelectItem value="CAD">CAD (C$)</SelectItem>
+                  <SelectItem value="MMK">MMK (K)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
