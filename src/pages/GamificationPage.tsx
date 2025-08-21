@@ -129,7 +129,7 @@ const GamificationPage = () => {
       timeLeft: "2 weeks left",
       icon: Car
     }
-  ];
+  ]);
 
   const totalBadges = badges.length;
   const earnedBadges = badges.filter(badge => badge.earned).length;
