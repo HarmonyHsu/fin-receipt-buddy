@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExpenseForm } from "@/components/ExpenseForm";
 import { ReceiptDisplay } from "@/components/ReceiptDisplay";
+import Navigation from "@/components/Navigation";
 import { Receipt, TrendingUp, Target, Shield } from "lucide-react";
 import heroImage from "@/assets/hero-fintech.jpg";
 
@@ -196,9 +197,11 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-hero">
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16">
+    <>
+      <Navigation />
+      <div className="min-h-screen bg-gradient-hero">
+        {/* Hero Section */}
+        <section className="container mx-auto px-4 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-5xl font-bold mb-6 leading-tight">
@@ -296,9 +299,10 @@ const Index = () => {
           >
             Create Your First Receipt 📄
           </Button>
-        </div>
-      </section>
-    </div>
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 
