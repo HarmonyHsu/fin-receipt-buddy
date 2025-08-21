@@ -1,18 +1,36 @@
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-import { Receipt, Menu, X } from "lucide-react";
+import { Receipt, Menu, X, LogOut } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, signOut } = useAuth();
 
-  const navLinks = [
+  const handleLogout = async () => {
+    await signOut();
+    // Redirect to signup as requested
+    window.location.href = "/signup";
+  };
+
+  const publicNavLinks = [
     { href: "/features", label: "Features" },
     { href: "/about", label: "About" },
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" }
   ];
+
+  const authenticatedNavLinks = [
+    { href: "/dashboard", label: "Dashboard" },
+    { href: "/expenses", label: "Expenses" },
+    { href: "/insights", label: "Insights" },
+    { href: "/goals", label: "Goals" },
+    { href: "/settings", label: "Settings" }
+  ];
+
+  const navLinks = user ? authenticatedNavLinks : publicNavLinks;
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -43,12 +61,21 @@ const Navigation = () => {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            <Button asChild variant="ghost">
-              <Link to="/login">Sign In</Link>
-            </Button>
-            <Button asChild variant="hero">
-              <Link to="/signup">Get Started</Link>
-            </Button>
+            {user ? (
+              <Button onClick={handleLogout} variant="ghost" className="gap-2">
+                <LogOut className="h-4 w-4" />
+                Logout
+              </Button>
+            ) : (
+              <>
+                <Button asChild variant="ghost">
+                  <Link to="/login">Sign In</Link>
+                </Button>
+                <Button asChild variant="hero">
+                  <Link to="/signup">Get Started</Link>
+                </Button>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -81,16 +108,25 @@ const Navigation = () => {
                 </Link>
               ))}
               <div className="flex flex-col gap-2 pt-4 border-t border-border">
-                <Button asChild variant="ghost" className="justify-start">
-                  <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-                    Sign In
-                  </Link>
-                </Button>
-                <Button asChild variant="hero" className="justify-start">
-                  <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
-                    Get Started
-                  </Link>
-                </Button>
+                {user ? (
+                  <Button onClick={handleLogout} variant="ghost" className="justify-start gap-2">
+                    <LogOut className="h-4 w-4" />
+                    Logout
+                  </Button>
+                ) : (
+                  <>
+                    <Button asChild variant="ghost" className="justify-start">
+                      <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                        Sign In
+                      </Link>
+                    </Button>
+                    <Button asChild variant="hero" className="justify-start">
+                      <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
+                        Get Started
+                      </Link>
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>
